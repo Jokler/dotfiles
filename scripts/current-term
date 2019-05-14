@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set_class=0
+if [[ $1 == "--class" ]]; then
+	set_class=1
+  class=$2
+	shift
+	shift
+fi
+
+if [[ $set_class -eq 1 ]]; then
+  #termite --name=$class $@
+  alacritty --class $class $@
+else
+  termite $@
+fi
+
+# vim: expandtab sw=2 ts=2

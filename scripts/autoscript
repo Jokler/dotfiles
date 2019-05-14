@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Exactly 1 argument is required"
+    exit
+fi
+
+SCRIPT_FOLDER="$HOME/scripts"
+SCRIPT_FILE="$SCRIPT_FOLDER/$1"
+
+if [[ -f $SCRIPT_FILE ]]; then
+  gvim $SCRIPT_FILE
+else
+  echo -e '#!/bin/bash\n\n# vim: expandtab sw=2 ts=2' > $SCRIPT_FILE
+  chmod +x $SCRIPT_FILE
+  gvim $SCRIPT_FILE &
+fi
+
+# vim: expandtab sw=2 ts=2

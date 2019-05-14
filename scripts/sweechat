@@ -1,0 +1,5 @@
+#!/bin/bash
+
+termite --name=weechat -e weechat
+
+# vim: expandtab sw=2 ts=2

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+moveto=0
+if [[ "$1" == "--move" ]]; then
+  moveto=1
+  shift
+fi
+
+function get_workspaces () {
+  workspace_json="$(i3-msg -t get_workspaces)"
+  IFS=','
+  read -ra split <<< "$workspace_json"
+
+  for entry in "${split[@]}"; do
+    if [[ "$entry" == *"name"* ]]; then
+      IFS='"'
+      read -ra split <<< "$entry"
+      echo "${split[3]}"
+    fi
+  done
+}
+
+selection=$(echo "$(get_workspaces)" | rofi -dmenu "$@")
+if [[ $moveto -eq 0 ]]; then
+  i3-msg workspace "$selection"
+else
+  i3-msg move container to workspace "$selection"
+fi
+
+# vim: expandtab sw=2 ts=2

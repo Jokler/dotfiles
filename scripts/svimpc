@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current-term --class vimpc -e vimpc
+
+# vim: expandtab sw=2 ts=2

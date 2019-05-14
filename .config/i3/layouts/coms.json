@@ -1,0 +1,29 @@
+{
+    "layout": "splith",
+    "percent": 1,
+    "type": "con",
+    "nodes": [
+        {
+            "name": "Terminal",
+            "percent": 0.7,
+            "swallows": [
+               {
+                  "instance": "^weechat$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "name": "TeamSpeak 3",
+            "percent": 0.3,
+            "swallows": [
+               {
+                  "class": "^TeamSpeak\\ 3$",
+                  "instance": "^ts3client_linux_amd64$",
+                  "title": "^TeamSpeak\\ 3$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current-term --class cava -e cava
+
+# vim: expandtab sw=2 ts=2

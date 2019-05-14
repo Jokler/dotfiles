@@ -1,0 +1,20 @@
+#!/bin/bash
+
+character_list="kvmap_list.txt"
+sep=":"
+
+cd "$(dirname "$0")" || exit 1
+
+
+selected_string=$(cat "$character_list" | rofi -dmenu -i -sync -p "key" $@)
+
+selected_symbol=$(cut -d "$sep" -f 2- <<< "$selected_string")
+#trim whitespace
+#selected_symbol=${selected_symbol// }
+
+for selection in clipboard primary; do
+  echo -n "$selected_symbol" | tr -d '\n' | xsel --logfile /dev/null -i --"$selection"
+done
+(
+
+# vim: expandtab sw=2 ts=2

@@ -1,0 +1,235 @@
+# i3 config file (v4)
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles.
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec current-term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Super+Alt to move the entire workspace to another monitor
+bindsym $mod+Mod1+j move workspace to output left
+bindsym $mod+Mod1+semicolon move workspace to output right
+
+bindsym $mod+Mod1+Left move workspace to output left
+bindsym $mod+Mod1+Right move workspace to output right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+d floating toggle
+
+bindsym $mod+Mod1+d sticky toggle
+
+# change focus between tiling / floating windows
+ bindsym $mod+d focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $mon_left "DVI-D-0"
+set $mon_center "DVI-I-1"
+set $mon_right "HDMI-0"
+
+# Workspaces for whatever
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Extra workspaces (mostly for secondary monitors)
+set $ws_coms "coms"
+set $ws_videos "videos"
+set $ws_music "music"
+set $ws_steam "steam"
+set $ws_game "game"
+
+workspace $ws_coms output $mon_left
+workspace $ws_videos output $mon_right
+workspace $ws_music output $mon_right
+#workspace $ws_steam output $mon_center
+#workspace $ws_game output $mon_center
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+grave workspace $ws_coms
+bindsym $mod+minus workspace $ws_steam
+bindsym $mod+g workspace $ws_game
+bindsym $mod+m workspace $ws_music
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+grave move container to workspace $ws_coms
+bindsym $mod+Shift+m move container to workspace $ws_music
+bindsym $mod+Shift+minus move container to workspace $ws_steam
+bindsym $mod+Shift+g move container to workspace $ws_game
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+set $system_mode "[s]hutdown, [r]eboot, s[u]spend, [l]ogout, l[o]ck"
+mode $system_mode {
+    bindsym s exec systemctl poweroff
+    bindsym r exec systemctl reboot
+    bindsym u exec systemctl suspend
+    bindsym l exec i3-msg exit
+    bindsym o exec betterlockscreen -l; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+e mode "default"
+}
+
+bindsym $mod+Shift+e mode $system_mode
+
+mode "resize" {
+    bindsym j resize shrink width 1 px or 1 ppt
+    bindsym k resize grow height 1 px or 1 ppt
+    bindsym l resize shrink height 1 px or 1 ppt
+    bindsym semicolon resize grow width 1 px or 1 ppt
+
+    bindsym Left resize shrink width 1 px or 1 ppt
+    bindsym Down resize grow height 1 px or 1 ppt
+    bindsym Up resize shrink height 1 px or 1 ppt
+    bindsym Right resize grow width 1 px or 1 ppt
+
+    bindsym Shift+j resize shrink width 10 px or 10 ppt
+    bindsym Shift+k resize grow height 10 px or 10 ppt
+    bindsym Shift+l resize shrink height 10 px or 10 ppt
+    bindsym Shift+semicolon resize grow width 10 px or 10 ppt
+
+    bindsym Shift+Left resize shrink width 10 px or 10 ppt
+    bindsym Shift+Down resize grow height 10 px or 10 ppt
+    bindsym Shift+Up resize shrink height 10 px or 10 ppt
+    bindsym Shift+Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Rofi Bindings
+bindsym $mod+space exec rofi -modi run -show run -matching fuzzy
+bindsym $mod+p exec $HOME/scripts/rofi-passmenu -matching fuzzy
+bindsym $mod+c exec clipmenu -p "copy" -matching fuzzy
+bindsym $mod+i exec rofi-kvmap -matching fuzzy
+bindsym $mod+equal exec rofi -show calc -modi calc -no-show-match -no-sort
+
+# Stupid idea i don't want to give up on
+bindsym $mod+x exec rofi-workspaces -p "go to" -matching fuzzy
+bindsym $mod+Shift+x exec rofi-workspaces --move -p "move to" -matching fuzzy
+
+# Volume controls
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+for_window [class="^com-atlauncher-App"] floating enable
+for_window [class="^TeamViewer"] floating enable
+for_window [title="^chatterino$"] floating enable
+for_window [title="^Emotes from .*$"] floating enable
+for_window [title="^Steam Guard .*$"] floating enable
+for_window [instance="upc.exe" title="Installing.*"] floating enable
+for_window [instance="ripcord" title="User Profile"] floating enable
+
+# No borders in my world
+for_window [class=".*"] border none
+
+gaps inner 5
+gaps outer 2
+smart_gaps yes
+
+# Do not touch my mouse while I use it!
+mouse_warping none
+focus_follows_mouse no
+
+# Layouts I want pretty much all the time
+exec --no-startup-id i3-msg "workspace $ws_coms; append_layout $HOME/.config/i3/layouts/coms.json"
+exec --no-startup-id i3-msg "workspace $ws_music; append_layout $HOME/.config/i3/layouts/music.json"
+exec --no-startup-id i3-msg "workspace $ws_videos; append_layout $HOME/.config/i3/layouts/videos.json"
+
+exec --no-startup-id teamspeak3
+exec --no-startup-id sweechat
+exec --no-startup-id svimpc
+exec --no-startup-id scava
+exec --no-startup-id mpv-gui
+exec --no-startup-id pasystray
+
+# These get restarted with i3 to reload their config files
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/i3/launch_compton.sh
+exec_always --no-startup-id nitrogen --restore

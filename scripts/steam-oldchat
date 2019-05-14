@@ -1,0 +1,5 @@
+#!/bin/bash
+
+steam-native -no-browser $@
+
+# vim: expandtab sw=2 ts=2

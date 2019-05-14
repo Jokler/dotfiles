@@ -1,0 +1,27 @@
+{
+    "layout": "splitv",
+    "percent": 1,
+    "type": "con",
+    "nodes": [
+        {
+            "name": "MPD Interface",
+            "percent": 0.8,
+            "swallows": [
+               {
+                  "instance": "^vimpc$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "name": "Visualizer",
+            "percent": 0.2,
+            "swallows": [
+               {
+                  "instance": "^cava$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}

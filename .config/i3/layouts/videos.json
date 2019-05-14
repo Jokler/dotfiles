@@ -1,0 +1,11 @@
+{
+    "name": "mpv",
+    "percent": 1,
+    "swallows": [
+       {
+          "class": "^mpv$",
+          "instance": "^gl$"
+       }
+    ],
+    "type": "con"
+}
