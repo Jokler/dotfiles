@@ -13,5 +13,5 @@ export QT_STYLE_OVERRIDE=gtk2
 
 alias ls="/usr/bin/exa --git"
 alias cat="/usr/bin/bat"
-alias cp="/urs/bin/rsync --info=progress2 --no-inc-recursive"
+alias cp="/usr/bin/rsync --info=progress2 --no-inc-recursive"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
