@@ -117,6 +117,10 @@ bindsym $mod+minus workspace $ws_steam
 bindsym $mod+g workspace $ws_game
 bindsym $mod+m workspace $ws_music
 
+# Cycle through workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
