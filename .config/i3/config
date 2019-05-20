@@ -207,6 +207,7 @@ for_window [class="^TeamViewer"] floating enable
 for_window [title="^chatterino$"] floating enable
 for_window [title="^Emotes from .*$"] floating enable
 for_window [title="^Steam Guard .*$"] floating enable
+for_window [instance="syncplay"] floating enable
 for_window [instance="upc.exe" title="Installing.*"] floating enable
 for_window [instance="ripcord" title="User Profile"] floating enable
 
