@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-firefox --private-window $@
+firefox --private-window "$@"
 
 # vim: expandtab sw=2 ts=2

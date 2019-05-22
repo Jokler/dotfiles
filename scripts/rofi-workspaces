@@ -1,12 +1,12 @@
 #!/bin/bash
 
 moveto=0
-if [[ "$1" == "--move" ]]; then
+if [ "$1" = "--move" ]; then
   moveto=1
   shift
 fi
 
-function get_workspaces () {
+get_workspaces() {
   workspace_json="$(i3-msg -t get_workspaces)"
   IFS=','
   read -ra split <<< "$workspace_json"
@@ -20,7 +20,7 @@ function get_workspaces () {
   done
 }
 
-selection=$(echo "$(get_workspaces)" | rofi -dmenu "$@")
+selection=$(get_workspaces | rofi -dmenu "$@")
 if [[ $moveto -eq 0 ]]; then
   i3-msg workspace "$selection"
 else

@@ -1,3 +1,5 @@
-#!/bin/bash
-mpv --player-operation-mode=pseudo-gui
+#!/bin/sh
+
+mpv --player-operation-mode=pseudo-gui "$@"
+
 # vim: expandtab sw=2 ts=2

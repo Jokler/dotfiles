@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 current-term --class vimpc -e vimpc
 

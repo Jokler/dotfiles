@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 character_list="kvmap_list.txt"
 sep=":"
@@ -6,15 +6,14 @@ sep=":"
 cd "$(dirname "$0")" || exit 1
 
 
-selected_string=$(cat "$character_list" | rofi -dmenu -i -sync -p "key" $@)
+selected_string=$(rofi -dmenu -i -sync -p "key" "$@" < "$character_list")
 
-selected_symbol=$(cut -d "$sep" -f 2- <<< "$selected_string")
+selected_symbol=$(printf '%s' "$selected_string" | cut -d "$sep" -f 2-)
 #trim whitespace
 #selected_symbol=${selected_symbol// }
 
 for selection in clipboard primary; do
-  echo -n "$selected_symbol" | tr -d '\n' | xsel --logfile /dev/null -i --"$selection"
+  printf '%s' "$selected_symbol" | tr -d '\n' | xsel --logfile /dev/null -i --"$selection"
 done
-(
 
 # vim: expandtab sw=2 ts=2
