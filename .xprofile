@@ -1,0 +1,17 @@
+#!/bin/sh
+
+export PATH="$PATH:$HOME/scripts:/usr/games"
+export EDITOR='vim'
+export BROWSER='firefox'
+
+# Launcher for clipmenu
+export CM_LAUNCHER=rofi
+export QT_STYLE_OVERRIDE=gtk2
+
+# ibus setup
+export PATH="$PATH:$HOME/scripts:/usr/games"
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+ibus-daemon -drx
