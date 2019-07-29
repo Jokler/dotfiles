@@ -233,12 +233,17 @@ bindsym XF86AudioNext exec mpc next
 for_window [class="^com-atlauncher-App"] floating enable
 for_window [class="^TeamViewer"] floating enable
 for_window [title="^chatterino$"] floating enable
-for_window [title="^Emotes from .*$"] floating enable
+for_window [title="^Emotes in .*$"] floating enable
 for_window [title="^Steam Guard .*$"] floating enable
 for_window [instance="syncplay"] floating enable
 for_window [instance="upc.exe" title="Installing.*"] floating enable
 for_window [instance="ripcord" title="User Profile"] floating enable
+for_window [instance="Blender" title="Blender Preferences"] floating enable
+for_window [instance="ts3client_linux_amd64" title="File Browser.*"] floating enable
+for_window [instance="ts3client_linux_amd64" title="File Transfers .*"] floating enable
+for_window [instance="ts3client_linux_amd64" title="Collected URLs"] floating enable
 
+assign [instance="ts3client_linux_amd64" title="You Have Been Poked"] $ws_coms
 # No borders in my world
 for_window [class=".*"] border none
 
