@@ -143,12 +143,23 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-set $system_mode "[s]hutdown, [r]eboot, s[u]spend, [l]ogout, l[o]ck"
-mode $system_mode {
+set $confirm_system "Confirm [s]hutdown, [r]eboot, [l]ogout"
+mode $confirm_system {
     bindsym s exec systemctl poweroff
     bindsym r exec systemctl reboot
-    bindsym u exec systemctl suspend
     bindsym l exec i3-msg exit
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Shift+e mode "default"
+}
+
+set $system_mode "Close programs[srl], l[o]ck"
+mode $system_mode {
+    bindsym s [class=".*"] kill; mode $confirm_system
+    bindsym r [class=".*"] kill; mode $confirm_system
+    bindsym l [class=".*"] kill; mode $confirm_system
+    bindsym u exec systemctl suspend
     bindsym o exec betterlockscreen -l; mode "default"
 
     bindsym Return mode "default"
