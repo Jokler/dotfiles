@@ -197,12 +197,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym Ctrl+Shift+5 exec xsel > /tmp/clip.txt && xyz-upload /tmp/clip.txt
+bindsym Ctrl+Shift+4 exec maim -s /tmp/ss.png && xyz-upload /tmp/ss.png
+bindsym Ctrl+Shift+3 exec deepin-screenshot -s /tmp/ss.png && xyz-upload /tmp/ss.png
+bindsym Ctrl+Shift+2 exec imlib2_grab /tmp/ss.png
+
 # Rofi Bindings
 bindsym $mod+space exec rofi -modi run -show run -matching fuzzy
 bindsym $mod+p exec $HOME/scripts/rofi-passmenu -matching fuzzy
 bindsym $mod+c exec clipmenu -p "copy" -matching fuzzy
 bindsym $mod+i exec rofi-kvmap -matching fuzzy
 bindsym $mod+equal exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+t exec rofi -modi json-dict -show json-dict -json-dict-mode 1
 
 # Stupid idea i don't want to give up on
 bindsym $mod+x exec rofi-workspaces -p "go to" -matching fuzzy
@@ -212,6 +218,17 @@ bindsym $mod+Shift+x exec rofi-workspaces --move -p "move to" -matching fuzzy
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
+bindsym $mod+KP_Multiply exec mpc repeat
+bindsym $mod+KP_Divide exec mpc single
+
+bindsym $mod+KP_Add exec mpc volume -2
+bindsym $mod+KP_Subtract exec mpc volume +2
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec mpc stop
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioNext exec mpc next
 
 for_window [class="^com-atlauncher-App"] floating enable
 for_window [class="^TeamViewer"] floating enable
