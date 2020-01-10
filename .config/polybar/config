@@ -22,7 +22,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -36,7 +36,7 @@ font-1 = Unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "WunconSiji:pixelsize=10;1"
 
 modules-left = date
-modules-center =
+modules-center = pkgupdates-available
 modules-right = i3
 
 scroll-up = i3wm-wsnext
@@ -59,7 +59,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -99,7 +99,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -322,6 +322,20 @@ menu-2-0-exec = systemctl poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/pkgupdates-available]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/usr/bin/env sh -c [command]")
+exec = /home/jokler/.config/polybar/checkupdates.sh
+
+; Will the script output continous content?
+tail = false
+
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 1800
 
 [settings]
 screenchange-reload = true
