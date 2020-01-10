@@ -278,5 +278,5 @@ exec --no-startup-id pasystray
 
 # These get restarted with i3 to reload their config files
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id $HOME/.config/i3/launch_compton.sh
+exec_always --no-startup-id sleep 3 && $HOME/.config/i3/launch_picom.sh
 exec_always --no-startup-id nitrogen --restore
