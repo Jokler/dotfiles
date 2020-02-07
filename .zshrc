@@ -1,8 +1,8 @@
 export ZSH="/home/jokler/.oh-my-zsh"
-ZSH_THEME="blinks"
-
 export RUSTFLAGS="-C link-arg=-fuse-ld=lld"
 export RUST_BACKTRACE=full
+
+eval "$(starship init zsh)"
 
 plugins=(git cargo rust ripgrep wd)
 
