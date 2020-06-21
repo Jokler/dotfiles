@@ -14,14 +14,31 @@
             "type": "con"
         },
         {
-            "name": "Visualizer",
+            "layout": "splith",
             "percent": 0.2,
-            "swallows": [
-               {
-                  "instance": "^cava$"
-               }
-            ],
-            "type": "con"
+            "type": "con",
+            "nodes": [
+                {
+                    "percent": 0.88,
+                    "name": "Visualizer",
+                    "swallows": [
+                        {
+                            "instance": "^cava$"
+                        }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "percent": 0.12,
+                    "name": "Cover Art",
+                    "swallows": [
+                        {
+                            "instance": "^Kunst$"
+                        }
+                    ],
+                    "type": "con"
+                }
+            ]
         }
     ]
 }

@@ -4,18 +4,19 @@
     "type": "con",
     "nodes": [
         {
-            "name": "Terminal",
-            "percent": 0.7,
+            "name": "IRC Client",
+            "percent": 0.75,
             "swallows": [
                {
-                  "instance": "^weechat$"
+                   "class": "^Termite$",
+                   "instance": "^weechat$"
                }
             ],
             "type": "con"
         },
         {
-            "name": "TeamSpeak 3",
-            "percent": 0.3,
+            "name": "Voice Coms",
+            "percent": 0.25,
             "swallows": [
                {
                   "class": "^TeamSpeak\\ 3$",
