@@ -1,25 +1,49 @@
-#!/bin/sh
+#!/usr/bin/env scriptisto
 
-if [ "$#" -ne 1 ]; then
-    echo "Exactly 1 argument is required"
-    exit
-fi
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     scripttools = { path = "/home/jokler/rust/scripttools" }
+//     structopt = "*"
+//     cmd_lib = "*"
+// scriptisto-end
 
-SCRIPT_FOLDER="$HOME/scripts"
-SCRIPT_FILE="$SCRIPT_FOLDER/$1"
+use structopt::StructOpt;
+use cmd_lib::*;
+use scripttools::*;
 
-if [ -f "$SCRIPT_FILE" ]; then
-  gvim "$SCRIPT_FILE" &
-else
+#[derive(Debug, StructOpt)]
+#[structopt(name = "autoscript", about = "A script to create scripts")]
+struct Opt {
+    /// Name of the created script
+    name: String,
+}
 
-cat >> "$SCRIPT_FILE" <<EOF
-#!/bin/sh
+fn main() {
+    let opt = Opt::from_args();
+    if let Err(e) = run(opt) {
+        eprintln!("{}", e);
+    }
+}
 
-# vim: expandtab sw=2 ts=2
-EOF
+fn run(opt: Opt) -> Result<()> {
+    let script_folder = home()?.join("scripts");
+    let script_file = script_folder.join(&opt.name);
 
-  chmod +x "$SCRIPT_FILE"
-  gvim "$SCRIPT_FILE" &
-fi
+    let str_path = script_file.to_str().ok_or("Failed to convert path to str")?;
+    if file_exists(&script_file)? == false {
+        let content = run_fun!("scriptisto new rust")?;
+        write_to_file(&script_file, &content)?;
+        run_cmd!("chmod +x \"{}\"", str_path)?;
+    }
 
-# vim: expandtab sw=2 ts=2
+    Ok(run_cmd!("gvim \"{}\" &", str_path)?)
+}
+
+// vim: filetype=rust
