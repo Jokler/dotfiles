@@ -239,11 +239,19 @@ bindsym Shift+Print exec --no-startup-id virsh -c qemu:///system shutdown Window
 
 bindsym $mod+Mod1+Ctrl+Shift+F12 exec --no-startup-id switch-ibus-engine
 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_role="menu"] floating enable
+
 for_window [class="com-atlauncher-App"] floating enable
 for_window [class="TeamViewer"] floating enable
 for_window [instance="chatterino" title="Chatterino Settings"] floating enable
 for_window [title="^Emotes in .*$"] floating enable
 for_window [title="^Steam Guard .*$"] floating enable
+for_window [class="Steam" title="^.* - Chat$"] floating enable
 for_window [instance="syncplay"] floating enable
 for_window [instance="upc.exe" title="Installing.*"] floating enable
 for_window [instance="ripcord" title="User Profile"] floating enable
@@ -255,15 +263,22 @@ for_window [instance="ts3client_linux_amd64" title="Collected URLs"] floating en
 for_window [instance="ts3client_linux_amd64" title="Icons"] floating enable
 for_window [instance="ts3client_linux_amd64" title="New Offline Message"] floating enable
 for_window [instance="ts3client_linux_amd64" title="Permissions - .*"] floating enable
+for_window [instance="ts3client_linux_amd64" title="Permissions Overview"] floating enable
+for_window [instance="ts3client_linux_amd64" title="Complaints List"] floating enable
 for_window [instance="ts3client_linux_amd64" title="Bookmarks"] floating enable
-for_window [instance="evelauncher.exe"] floating enable
 
 for_window [instance="java-lang-Thread" title="win0"] floating enable
 for_window [instance="line.exe" class="Wine"] floating enable
 for_window [class="Tor Browser"] floating enable
 
+for_window [instance="synthetik.exe"] floating enable
+for_window [instance="evelauncher.exe"] floating enable
+
+for_window [instance="gta5.exe"] floating disable
 
 assign [instance="ts3client_linux_amd64" title="You Have Been Poked"] $ws_coms
+assign [instance="Steam" title="Settings"] $ws_steam
+
 # No borders in my world
 for_window [class=".*"] border none
 
