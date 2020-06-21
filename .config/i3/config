@@ -63,18 +63,20 @@ bindsym $mod+Shift+d floating toggle
 bindsym $mod+Mod1+d sticky toggle
 
 # change focus between tiling / floating windows
- bindsym $mod+d focus mode_toggle
+bindsym $mod+d focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
 
-set $mon_left "DVI-D-0"
-set $mon_center "DVI-I-1"
-set $mon_right "HDMI-0"
+set $mon_left "HDMI-0"
+set $mon_center "DVI-D-0"
+set $mon_right "DP-5"
 
+# Firefox
+set $ws1 "1 龜"
+# Code
+set $ws2 "2 "
 # Workspaces for whatever
-set $ws1 "1"
-set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
@@ -88,7 +90,7 @@ set $ws10 "10"
 set $ws_coms "coms"
 set $ws_videos "videos"
 set $ws_music "music"
-set $ws_steam "steam"
+set $ws_steam "11 "
 set $ws_game "game"
 
 workspace $ws_coms output $mon_left
@@ -151,7 +153,7 @@ mode $confirm_system {
     bindsym $mod+Shift+e mode "default"
 }
 
-set $system_mode "Close programs[srl], l[o]ck"
+set $system_mode "Close programs[srl], s[u]spend, l[o]ck"
 mode $system_mode {
     bindsym s [class=".*"] kill; mode $confirm_system
     bindsym r [class=".*"] kill; mode $confirm_system
