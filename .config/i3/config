@@ -208,31 +208,40 @@ bindsym $mod+c exec clipmenu -p "copy" -matching fuzzy
 bindsym $mod+i exec rofi-kvmap -matching fuzzy
 bindsym $mod+equal exec rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+t exec rofi -modi json-dict -show json-dict -json-dict-mode 1
+bindsym $mod+b exec eidolon menu
 
 # Stupid idea i don't want to give up on
 bindsym $mod+x exec rofi-workspaces -p "go to" -matching fuzzy
 bindsym $mod+Shift+x exec rofi-workspaces --move -p "move to" -matching fuzzy
 
 # Volume controls
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+#bindsym XF86Tools exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_09_00.4.analog-stereo -2%
+#bindsym XF86Launch5 exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_09_00.4.analog-stereo +2%
+#bindsym XF86Launch6 exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_09_00.4.analog-stereo toggle
+#
+bindsym XF86Tools exec --no-startup-id mpc volume -2
+bindsym XF86Launch5 exec --no-startup-id mpc volume +2
+bindsym XF86Launch6 exec --no-startup-id mpc toggle
 
-bindsym $mod+KP_Multiply exec mpc repeat
-bindsym $mod+KP_Divide exec mpc single
+bindsym XF86Launch9 exec --no-startup-id mpc repeat
+bindsym XF86AudioMicMute exec --no-startup-id mpc single
 
-bindsym $mod+KP_Add exec mpc volume -2
-bindsym $mod+KP_Subtract exec mpc volume +2
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioStop exec mpc stop
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioStop exec --no-startup-id mpc stop
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioNext exec --no-startup-id mpc next
 
-for_window [class="^com-atlauncher-App"] floating enable
-for_window [class="^TeamViewer"] floating enable
-for_window [title="^chatterino$"] floating enable
-for_window [instance="^chatterino$" title="Chatterino Settings"] floating enable
+bindsym Ctrl+Print exec --no-startup-id virsh -c qemu:///system start Windows10Pass
+bindsym Shift+Print exec --no-startup-id virsh -c qemu:///system shutdown Windows10Pass
+
+bindsym $mod+Mod1+Ctrl+Shift+F12 exec --no-startup-id switch-ibus-engine
+
+for_window [class="com-atlauncher-App"] floating enable
+for_window [class="TeamViewer"] floating enable
+for_window [instance="chatterino" title="Chatterino Settings"] floating enable
 for_window [title="^Emotes in .*$"] floating enable
 for_window [title="^Steam Guard .*$"] floating enable
 for_window [instance="syncplay"] floating enable
