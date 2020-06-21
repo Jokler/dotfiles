@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 
 bindsym Ctrl+Shift+5 exec xsel > /tmp/clip.txt && xyz-upload /tmp/clip.txt
 bindsym Ctrl+Shift+4 exec maim -s /tmp/ss.png && xyz-upload /tmp/ss.png
-bindsym Ctrl+Shift+3 exec deepin-screenshot -s /tmp/ss.png && xyz-upload /tmp/ss.png
+bindsym Ctrl+Shift+3 exec deepin-screen-recorder -s /tmp/ss.png && xyz-upload /tmp/ss.png
 bindsym Ctrl+Shift+2 exec imlib2_grab /tmp/ss.png
 
 # Rofi Bindings
