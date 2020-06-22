@@ -1,0 +1,7 @@
+set default-bg "#151515"
+set statusbar-bg "#202020"
+set selection-clipboard clipboard
+set window-title-home-tilde true
+set guioptions ""
+
+map b toggle_statusbar
