@@ -1,0 +1,7 @@
+#!/bin/sh
+
+killall -SIGSTOP "GTA5.exe"
+sleep 8
+killall -SIGCONT "GTA5.exe"
+
+# vim: expandtab sw=2 ts=2

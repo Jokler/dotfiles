@@ -1,0 +1,5 @@
+#!/bin/sh
+
+octave --gui $@
+
+# vim: expandtab sw=2 ts=2

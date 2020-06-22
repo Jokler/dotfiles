@@ -9,10 +9,11 @@ if [ "$1" = "--class" ]; then
 fi
 
 if [ $set_class -eq 1 ]; then
-  #termite --name=$class $@
-  alacritty --class "$class" "$@"
+  termite --name=$class "$@" &
+  #alacritty --class "$class" "$@"
 else
-  termite "$@"
+  termite "$@" &
+  #alacritty "$@"
 fi
 
 # vim: expandtab sw=2 ts=2

@@ -1,0 +1,89 @@
+#!/usr/bin/env scriptisto
+
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     structopt="*"
+//     cmd_lib = "0.7.8"
+//     atty = "0.2"
+// scriptisto-end
+
+use structopt::StructOpt;
+use cmd_lib::*;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "removablectl", about = "Manages removable drives.")]
+enum Opt {
+    /// Mount a drive
+    Mount,
+    /// Unmount a drive
+    Unmount,
+}
+
+fn main() -> CmdResult {
+    let opt = Opt::from_args();
+    match opt {
+        Opt::Mount => mount(),
+        Opt::Unmount => unmount(),
+    }
+}
+
+fn mount () -> CmdResult {
+    let unmounted = Process::new("lsblk --noheadings --raw -o NAME,MOUNTPOINT")
+                    .pipe("awk '$1~/[[:digit:]]/ && $2 == \"\"'")
+                    .wait::<FunResult>()?;
+    let filtered = unmounted
+                    .split_whitespace()
+                    .filter(|s| !s.starts_with("sda"))
+                    .filter(|s| !s.starts_with("loop"))
+                    .map(|s| format!("/dev/{}", s))
+                    .collect::<Vec<_>>();
+
+    if filtered.is_empty() {
+        die!("No unmounted drives were found");
+    }
+
+    let selected = chooser(filtered)?;
+    run_cmd!("udisksctl mount -b {}", selected)
+}
+
+fn unmount () -> CmdResult {
+    let mounted = Process::new("cat /etc/mtab")
+                    .pipe("grep ^/")
+                    .pipe("awk '{print $1}'")
+                    .wait::<FunResult>()?;
+    let filtered = mounted
+                    .split_whitespace()
+                    .filter(|s| !s.starts_with("/dev/sda"))
+                    .map(|s| s.to_owned())
+                    .collect::<Vec<_>>();
+
+    if filtered.is_empty() {
+        die!("No mounted drives were found");
+    }
+
+    let selected = chooser(filtered)?;
+    run_cmd!("udisksctl unmount -b {}", selected)
+}
+
+fn chooser(list: Vec<String>) -> FunResult {
+    let selected = if atty::is(atty::Stream::Stdout) {
+        run_fun!("enquirer select -m \"Choose a drive\" {}", list.join(" "))?
+    } else {
+        run_fun!("echo -e \"{}\" | rofi -dmenu -p \"Choose a drive\"", list.join("\\n"))?
+    };
+
+    if selected.is_empty() {
+        die!("Nothing was selected");
+    }
+
+    Ok(selected)
+}
+
+// vim: filetype=rust

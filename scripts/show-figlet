@@ -1,0 +1,51 @@
+#!/usr/bin/env scriptisto
+
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     scripttools = { path = "/home/jokler/rust/scripttools" }
+//     structopt="*"
+//     cmd_lib = "*"
+//     atty = "*"
+//     walkdir = "*"
+// scriptisto-end
+
+use structopt::StructOpt;
+use walkdir::WalkDir;
+use cmd_lib::*;
+use scripttools::*;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "show-figlet", about = "Demos figlet fonts")]
+struct Opt {
+    input: String,
+}
+
+fn main() {
+    let opt = Opt::from_args();
+    if let Err(e) = run(opt) {
+        eprintln!("{}", e);
+    }
+}
+
+fn run(opt: Opt) -> Result<()> {
+    for entry in WalkDir::new("/usr/share/figlet") {
+        let entry = entry.unwrap();
+        let path = entry.path();
+        let ext = path.extension().map(|v| v.to_str().unwrap());
+        if Some("flf") == ext {
+            let font = path.file_name().unwrap();
+            run_cmd!("figlet -f {} {}", font.to_str().unwrap(), opt.input)?;
+        }
+    }
+
+    Ok(())
+}
+
+// vim: filetype=rust

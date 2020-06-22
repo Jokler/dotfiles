@@ -1,0 +1,37 @@
+#!/usr/bin/env scriptisto
+
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     scripttools = { path = "/home/jokler/rust/scripttools" }
+//     cmd_lib = "*"
+// scriptisto-end
+
+use cmd_lib::*;
+use scripttools::*;
+
+fn main() {
+    if let Err(e) = run() {
+        eprintln!("{}", e);
+    }
+}
+
+fn run() -> Result<()> {
+    let current_engine = run_fun!("ibus engine")?;
+    
+    match current_engine.as_ref() {
+        "xkb:us::eng" => run_cmd!("ibus engine anthy")?,
+        "anthy" => run_cmd!("ibus engine xkb:us::eng")?,
+        _ => panic!("unknown engine: {}", current_engine),
+    }
+
+    Ok(())
+}
+
+// vim: filetype=rust

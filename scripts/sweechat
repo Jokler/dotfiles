@@ -1,5 +1,5 @@
 #!/bin/sh
 
-termite --name=weechat -e weechat
+current-term --class weechat -e weechat
 
 # vim: expandtab sw=2 ts=2

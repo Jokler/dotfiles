@@ -1,5 +1,5 @@
 #!/bin/sh
 
-steam-native -no-browser "$@"
+current-term --class htop -e htop
 
 # vim: expandtab sw=2 ts=2

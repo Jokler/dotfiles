@@ -1,0 +1,11 @@
+#!/bin/sh
+
+export WINEPREFIX="$HOME"/.local/share/wine/renoise
+export WINEARCH=win64
+export WINEDEBUG=-all
+if [ ! -d "$WINEPREFIX" ] ; then
+   mkdir -p "$WINEPREFIX"
+   wineboot -u
+fi
+
+wine "$WINEPREFIX/drive_c/Program Files/Renoise 3.2.1/Renoise.exe" "$@"

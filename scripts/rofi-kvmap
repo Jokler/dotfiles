@@ -5,7 +5,6 @@ sep=":"
 
 cd "$(dirname "$0")" || exit 1
 
-
 selected_string=$(rofi -dmenu -i -sync -p "key" "$@" < "$character_list")
 
 selected_symbol=$(printf '%s' "$selected_string" | cut -d "$sep" -f 2-)

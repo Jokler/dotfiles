@@ -1,0 +1,6 @@
+#!/bin/sh
+
+xmodmap -e "keycode 37 = Control_R"
+xmodmap -e "keycode 105 = Control_L"
+
+# vim: expandtab sw=2 ts=2

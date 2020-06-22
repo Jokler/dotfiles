@@ -1,0 +1,5 @@
+#!/bin/sh
+
+paplay --volume=59000 "$HOME/scripts/jeff.ogg" &
+
+# vim: expandtab sw=2 ts=2

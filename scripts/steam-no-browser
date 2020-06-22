@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#steam-native -noverifyfiles -nobootstrapupdate -skipinitialbootstrap -norepairfiles -overridepackageurl -no-browser "$@"
+steam-native -no-browser "$@"
+#steam-runtime -no-browser "$@"
+
+# vim: expandtab sw=2 ts=2

@@ -1,0 +1,47 @@
+#!/usr/bin/env scriptisto
+
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     scripttools = { path = "/home/jokler/rust/scripttools" }
+//     structopt="*"
+//     cmd_lib = "*"
+//     atty = "*"
+// scriptisto-end
+
+use structopt::StructOpt;
+use cmd_lib::*;
+use scripttools::*;
+
+use std::path::PathBuf;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "xyz-upload", about = "Uploads the specified file to jokler.xyz")]
+struct Opt {
+    /// File to upload
+    path: PathBuf,
+}
+
+fn main() {
+    let opt = Opt::from_args();
+    if let Err(e) = run(opt) {
+        eprintln!("{}", e);
+    }
+}
+
+fn run(opt: Opt) -> Result<()> {
+    let str_path = opt.path.to_str().ok_or("Failed to convert path to str")?;
+    run_cmd!("upf -o /home/jokler/.config/xyz-logs.txt xyz \"{}\" | tee /dev/tty | xsel -i --clipboard", str_path)?;
+    println!();
+    run_cmd!("beep")?;
+
+    Ok(())
+}
+
+// vim: filetype=rust

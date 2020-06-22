@@ -1,0 +1,47 @@
+#!/usr/bin/env scriptisto
+
+// scriptisto-begin
+// script_src: src/main.rs
+// build_cmd: cargo build --release && strip ./target/release/script
+// target_bin: ./target/release/script
+// files:
+//  - path: Cargo.toml
+//    content: |
+//     package = { name = "script", version = "0.1.0", edition = "2018"}
+//     [dependencies]
+//     scripttools = { path = "/home/jokler/rust/scripttools" }
+//     structopt="*"
+//     cmd_lib = "*"
+//     regex = "*"
+// scriptisto-end
+
+use structopt::StructOpt;
+use cmd_lib::*;
+use scripttools::*;
+
+#[derive(Debug, StructOpt)]
+#[structopt(name = "open-url", about = "Opens urls in their respective programs")]
+struct Opt {
+    /// The url to open
+    url: String,
+}
+
+fn main() {
+    let opt = Opt::from_args();
+    if let Err(e) = run(opt) {
+        eprintln!("{}", e);
+    }
+}
+
+fn run(opt: Opt) -> Result<()> {
+    let url = opt.url;
+
+    let yt_re = regex::Regex::new(r"^https?://(www\.)?(youtube\.com/watch|youtu\.be/)").unwrap();
+    if yt_re.is_match(&url) {
+        Ok(run_cmd!("umpv \"{}\"", url)?)
+    } else {
+        Ok(run_cmd!("firefox \"{}\"", url)?)
+    }
+}
+
+// vim: filetype=rust

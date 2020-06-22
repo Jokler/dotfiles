@@ -1,0 +1,5 @@
+#!/bin/sh
+
+kunst --music_dir $HOME/music/ &
+
+# vim: expandtab sw=2 ts=2

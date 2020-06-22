@@ -1,0 +1,14 @@
+#!/bin/sh
+
+SONG_DIR="$HOME/Games/osu/drive_c/osu/Songs"
+
+filename=$(basename -- "$1")
+filename="${filename%.*}"
+DEST_DIR="$SONG_DIR/$filename"
+
+mkdir "$DEST_DIR"
+unzip "$1" -d "$DEST_DIR" | exit 1
+
+rm "$1"
+
+# vim: expandtab sw=2 ts=2

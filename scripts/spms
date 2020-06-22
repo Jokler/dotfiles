@@ -1,0 +1,5 @@
+#!/bin/sh
+
+current-term --class pms -e pms
+
+# vim: expandtab sw=2 ts=2
