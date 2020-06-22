@@ -2,7 +2,7 @@
 
 export PATH="$PATH:$HOME/scripts:$HOME/.cargo/bin:/usr/games"
 export EDITOR='vim'
-export BROWSER='firefox'
+export BROWSER='open-url'
 
 # Launcher for clipmenu
 export CM_LAUNCHER=rofi
