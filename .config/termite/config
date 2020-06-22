@@ -1,0 +1,84 @@
+[options]
+font = Monospace 11
+scrollback_lines = 10000
+
+#[colors]
+[colors]
+# Based on Alacritty's One Dark
+# https://github.com/eendroroy/alacritty-theme/blob/master/themes/one_dark.yaml
+cursor = #abb2bf
+cursor_foreground = #1e2127
+
+foreground = #abb2bf
+foreground_bold = #abb2bf
+background = rgba(40, 44, 52, 0.9)
+
+# Normal colors
+color0 = #282c34
+color1 = #e06c75
+color2 = #98c379
+color3 = #d19a66
+color4 = #61afef
+color5 = #c678dd
+color6 = #56b6c2
+color7 = #abb2bf
+
+# Bright colors
+color8 = #5c6370
+color9 = #e06c75
+color10 = #98c379
+color11 = #d19a66
+color12 = #61afef
+color13 = #c678dd
+color14 = #56b6c2
+color15 = #ffffff
+
+
+## Base16 Spacemacs
+## Author: Nasser Alshammari (https://github.com/nashamri/spacemacs-theme)
+
+#foreground          = #a3a3a3
+#foreground_bold     = #e8e8e8
+#cursor              = #e8e8e8
+#cursor_foreground   = #1f2022
+#background          = rgba(51, 52, 54, 0.9)
+
+## 16 color space
+
+## Black, Gray, Silver, White
+#color0  = #1f2022
+#color8  = #585858
+#color7  = #a3a3a3
+#color15 = #f8f8f8
+
+## Red
+#color1  = #f2241f
+#color9  = #f2241f
+
+## Green
+#color2  = #67b11d
+#color10 = #67b11d
+
+## Yellow
+#color3  = #b1951d
+#color11 = #b1951d
+
+## Blue
+#color4  = #4f97d7
+#color12 = #4f97d7
+
+## Purple
+#color5  = #a31db1
+#color13 = #a31db1
+
+## Teal
+#color6  = #2d9574
+#color14 = #2d9574
+
+## Extra colors
+#color16 = #ffa500
+#color17 = #b03060
+#color18 = #282828
+#color19 = #444155
+#color20 = #b8b8b8
+#color21 = #e8e8e8
