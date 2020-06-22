@@ -5,5 +5,9 @@ symbol = "➜"
 truncate_to_repo = false
 truncation_length = 8
 
+[cmd_duration]
+min_time = 0
+prefix = ""
+
 [rust]
 symbol = "⚙️  "
