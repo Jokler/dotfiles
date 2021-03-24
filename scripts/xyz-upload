@@ -11,7 +11,7 @@
 //     [dependencies]
 //     scripttools = { path = "/home/jokler/rust/scripttools" }
 //     structopt="*"
-//     cmd_lib = "*"
+//     cmd_lib = "0.7"
 //     atty = "*"
 // scriptisto-end
 
@@ -36,7 +36,7 @@ fn main() {
 }
 
 fn run(opt: Opt) -> Result<()> {
-    let str_path = opt.path.to_str().ok_or("Failed to convert path to str")?;
+    let str_path = opt.path.to_str().ok_or(anyhow!("Failed to convert path to str"))?;
     run_cmd!("upf -o /home/jokler/.config/xyz-logs.txt xyz \"{}\" | tee /dev/tty | xsel -i --clipboard", str_path)?;
     println!();
     run_cmd!("beep")?;

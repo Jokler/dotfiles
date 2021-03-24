@@ -11,7 +11,7 @@
 //     [dependencies]
 //     scripttools = { path = "/home/jokler/rust/scripttools" }
 //     structopt = "*"
-//     cmd_lib = "*"
+//     cmd_lib = "0.10"
 // scriptisto-end
 
 use structopt::StructOpt;
@@ -36,14 +36,14 @@ fn run(opt: Opt) -> Result<()> {
     let script_folder = home()?.join("scripts");
     let script_file = script_folder.join(&opt.name);
 
-    let str_path = script_file.to_str().ok_or("Failed to convert path to str")?;
-    if file_exists(&script_file)? == false {
-        let content = run_fun!("scriptisto new rust")?;
+    let str_path = script_file.to_str().ok_or(anyhow!("Failed to convert path to str"))?;
+    if !file_exists(&script_file)? {
+        let content = run_fun!(scriptisto new rust)?;
         write_to_file(&script_file, &content)?;
-        run_cmd!("chmod +x \"{}\"", str_path)?;
+        run_cmd!(chmod +x "${str_path}")?;
     }
 
-    Ok(run_cmd!("gvim \"{}\" &", str_path)?)
+    Ok(run_cmd!(gvim "${str_path}" &)?)
 }
 
 // vim: filetype=rust
