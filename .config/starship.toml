@@ -1,13 +1,58 @@
+format = """
+$time\
+$aws\
+$hostname\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$package\
+$cmake\
+$elm\
+$java\
+$nodejs\
+$python\
+$rust\
+$lua\
+$vagrant\
+$custom\
+$cmd_duration\
+$line_break\
+$jobs\
+$status\
+$character"""
+
+[hostname]
+ssh_only = false
+
 [character]
-symbol = "➜"
+success_symbol = "[➜](bold green)"
+error_symbol = "[✖](bold red)"
 
 [directory]
-truncate_to_repo = false
+truncate_to_repo = true
 truncation_length = 8
+truncation_symbol = "…/"
 
 [cmd_duration]
 min_time = 0
-prefix = ""
+format = "[$duration]($style) "
 
 [rust]
-symbol = "⚙️  "
+symbol = "⚙️ "
+
+[shlvl]
+disabled = false
+threshold = 2
+symbol = "↕️"
+
+[time]
+disabled = false
+format = "[$time]($style) "
+
+[aws]
+format = '[$symbol($profile )]($style)'
+style = "bold blue"
+symbol = ""
