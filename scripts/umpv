@@ -73,6 +73,8 @@ except socket.error as e:
 if sock:
     # Unhandled race condition: what if mpv is terminating right now?
     for f in files:
+        if f == "--":
+            continue
         # escape: \ \n "
         f = f.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n")
         f = "\"" + f + "\""

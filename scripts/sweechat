@@ -1,5 +1,5 @@
 #!/bin/sh
 
-current-term --class weechat -e weechat
+alacritty --class weechat -e weechat
 
 # vim: expandtab sw=2 ts=2

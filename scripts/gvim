@@ -1,5 +1,0 @@
-#!/bin/sh
-
-current-term --class gvim -e "vim $@"
-
-# vim: expandtab sw=2 ts=2

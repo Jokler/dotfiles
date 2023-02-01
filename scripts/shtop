@@ -1,5 +1,5 @@
 #!/bin/sh
 
-current-term --class htop -e htop
+alacritty --class htop -e htop &
 
 # vim: expandtab sw=2 ts=2

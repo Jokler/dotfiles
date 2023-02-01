@@ -4,6 +4,6 @@ iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
 EOF
 echo "$MUSIC_NOTE" | base64 --decode > "/tmp/kunst.jpg"
 
-kunst --music_dir $HOME/music/ &
+kunst --music_dir "$HOME/music/" &
 
 # vim: expandtab sw=2 ts=2

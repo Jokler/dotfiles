@@ -1,5 +1,5 @@
 #!/bin/sh
 
-current-term --class cava -e cava
+alacritty --class cava -e cava &
 
 # vim: expandtab sw=2 ts=2

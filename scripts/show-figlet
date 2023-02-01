@@ -11,7 +11,7 @@
 //     [dependencies]
 //     scripttools = { path = "/home/jokler/rust/scripttools" }
 //     structopt="*"
-//     cmd_lib = "*"
+//     cmd_lib = "1.0"
 //     atty = "*"
 //     walkdir = "*"
 // scriptisto-end
@@ -39,9 +39,26 @@ fn run(opt: Opt) -> Result<()> {
         let entry = entry.unwrap();
         let path = entry.path();
         let ext = path.extension().map(|v| v.to_str().unwrap());
-        if Some("flf") == ext {
+        if Some("flf") == ext || Some("tlf") == ext {
+            let ext = ext.unwrap();
             let font = path.file_name().unwrap();
-            run_cmd!("figlet -f {} {}", font.to_str().unwrap(), opt.input)?;
+            let font_str = font.to_str().unwrap();
+            let input_text = &opt.input;
+            match ext {
+                "flf" => {
+                    println!("figlet -f \"{}\" \"{}\"", font_str, input_text);
+                    if let Err(e) = run_cmd!(figlet -f $font_str $input_text) {
+                        eprintln!("Failed to run figlet: {}", e);
+                    }
+                }
+                "tlf" => {
+                    println!("toilet -f \"{}\" \"{}\"", font_str, input_text);
+                    if let Err(e) = run_cmd!(toilet -f $font_str $input_text) {
+                        eprintln!("Failed to run toilet: {}", e);
+                    }
+                }
+                _ => (),
+            }
         }
     }
 

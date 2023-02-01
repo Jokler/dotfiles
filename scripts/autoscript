@@ -43,7 +43,7 @@ fn run(opt: Opt) -> Result<()> {
         run_cmd!(chmod +x "${str_path}")?;
     }
 
-    Ok(run_cmd!(gvim "${str_path}" &)?)
+    Ok(run_cmd!(gvim "${str_path}")?)
 }
 
 // vim: filetype=rust

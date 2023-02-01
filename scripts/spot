@@ -23,7 +23,7 @@ fn main() {
 }
 
 fn run() -> Result<()> {
-    Ok(run_cmd!("current-term --class spt -e spt")?)
+    Ok(run_cmd!("alacritty --class spt -e spt")?)
 }
 
 // vim: filetype=rust

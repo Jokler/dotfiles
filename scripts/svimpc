@@ -1,5 +1,5 @@
 #!/bin/sh
 
-current-term --class vimpc -e vimpc
+alacritty --class vimpc -e vimpc &
 
 # vim: expandtab sw=2 ts=2
